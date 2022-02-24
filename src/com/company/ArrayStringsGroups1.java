@@ -5,8 +5,14 @@ import java.util.Random;
 
 public class ArrayStringsGroups1 {
     public static void main(String[] args) {
+        //Imagine that you have an array of strings of random length. Implement the method that
+        // returns how many groups of strings grouped by the same length are present.
+        // For example, there are 5 lines in the array: 2 are 10 characters long,
+        // 2 are 18 characters long and one is 4 characters long.
+        // So in this array there are 3 different groups.
+
         //String[] arr = getRandomStrArray(5, 15);
-        String[] arr = {"dfn","öasf","skfj","whe","sdjl"};
+        String[] arr = {"dfn","öasf","skfjfb","whedfgjtt","sdjl"};
         System.out.println(Arrays.toString(arr));
         System.out.println("There are " + getStringsGroups(arr) + " groups of strings");
 
