@@ -2,45 +2,42 @@ package com.company;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
-public class ArrayStringsGroups1 {
+public class ArrayStringsGroups {
     public static void main(String[] args) {
-        //String[] arr = getRandomStrArray(5, 15);
-        String[] arr = {"dfn","öasf","skfj","whe","sdjl"};
+        Scanner sc= new Scanner(System.in);
+        int lengthArr, maxLengthStr;
+        do {
+            System.out.println("Enter length of an array");
+            lengthArr= sc.nextInt();
+            System.out.println("Enter maximal length of a string in the array");
+            maxLengthStr= sc.nextInt();
+
+        }while (lengthArr<=0 || maxLengthStr<=0);
+
+        String[] arr = getRandomStrArray(lengthArr, maxLengthStr);
+
+      //  String[] arr = {"dfn","öasfdngläa","skfj","whe","sdjl"};
         System.out.println(Arrays.toString(arr));
         System.out.println("There are " + getStringsGroups(arr) + " groups of strings");
 
     }
 
     private static int getStringsGroups(String[] arr) {
-        sortArrayLengths(arr);
+        int len = arr.length;
+        int[] lengths = new int[len];
+        for (int i = 0; i < len; i++) {
+            lengths[i] = arr[i].length();
+        }
+        Arrays.sort(lengths);
         int count = 1;
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i].length() != arr[i-1].length()){
+        for (int i = 1; i < len; i++) {
+            if (lengths[i] != lengths[i-1]){
                 count++;
             }
         }
         return count;
-    }
-
-    public static void sortArrayLengths(String[] arr){
-        for (int i = 0; i < arr.length-1; i++) {
-            String temp = arr[findMinIndex(arr,i)];
-            arr[findMinIndex(arr,i)] = arr[i];
-            arr[i] = temp;
-        }
-    }
-
-    public static int findMinIndex(String[] array, int indexNotSorted){
-        int minIndex = indexNotSorted;
-        int min = array[indexNotSorted].length();
-        for (int i = indexNotSorted; i < array.length; i++) {
-            if (min > array[i].length()){
-                min = array[i].length();
-                minIndex = i;
-            }
-        }
-        return minIndex;
     }
 
     private static String[] getRandomStrArray(int lengthArr, int maxLengthStr) {
@@ -63,4 +60,5 @@ public class ArrayStringsGroups1 {
         }
         return sb.toString();
     }
+
 }
